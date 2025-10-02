@@ -5,12 +5,20 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "jsx": "react-jsx",
     "strict": true,
-//    "baseUrl": "./src",
+    "baseUrl": "./src",
     "rootDir": "src",
     "outDir": "dist",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "paths": {
+      "app": ["app/*"],
+      "pages": ["pages/*"],
+      "widgets": ["widgets/*"],
+      "features": ["features/*"],
+      "entities": ["entities/*"],
+      "shared": ["shared/*"]
+    }
   },
   "include": [
     "src"
