@@ -116,6 +116,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/section/find-all": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["SectionApiController_findAll"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/section/find/{id}": {
         parameters: {
             query?: never;
@@ -203,29 +219,11 @@ export interface components {
              */
             text: string;
         };
-        PageResponse: {
-            /**
-             * @description uuid
-             * @example 48709c63-458e-4f90-8c39-577416a790f2
-             */
-            id: string;
-            /**
-             * @description Page text
-             * @example Page one
-             */
-            text: string;
-            /**
-             * @description Page number
-             * @example 1
-             */
-            pageNumber: number;
-        };
         LessonResponse: {
             /** @example 48709c63-458e-4f90-8c39-577416a790f2 */
             id: string;
             /** @example Lesson one */
             text: string;
-            pages: components["schemas"]["PageResponse"][];
         };
         PageUpdateRequest: {
             /**
@@ -266,6 +264,23 @@ export interface components {
              */
             pageNumber: number;
         };
+        PageResponse: {
+            /**
+             * @description uuid
+             * @example 48709c63-458e-4f90-8c39-577416a790f2
+             */
+            id: string;
+            /**
+             * @description Page text
+             * @example Page one
+             */
+            text: string;
+            /**
+             * @description Page number
+             * @example 1
+             */
+            pageNumber: number;
+        };
         SectionResponse: {
             /**
              * @description uuid
@@ -277,6 +292,7 @@ export interface components {
              * @example Section one
              */
             text: string;
+            lessons: components["schemas"]["LessonResponse"][];
         };
         SectionUpdateRequest: {
             /**
@@ -467,6 +483,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PageResponse"];
+                };
+            };
+        };
+    };
+    SectionApiController_findAll: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Get all */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SectionResponse"][];
                 };
             };
         };

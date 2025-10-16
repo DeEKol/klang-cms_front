@@ -32,6 +32,11 @@ export type TGetLessonResponse =
     paths[typeof getLessonEndpoint]["get"]["responses"]["200"]["content"]["application/json"];
 type TGetLessonRequestPath = paths[typeof getLessonEndpoint]["get"]["parameters"]["path"];
 
+const getSectionAllEndpoint = "/section/find-all";
+export type TGetSectionAllResponse =
+    paths[typeof getSectionAllEndpoint]["get"]["responses"]["200"]["content"]["application/json"];
+// type TGetSectionAllRequestPath = paths[typeof getSectionAllEndpoint]["get"]["parameters"]["path"];
+
 function trimEnd(str: string, suffix: string) {
     if (str.endsWith(suffix)) {
         return str.slice(0, -suffix.length);
@@ -53,4 +58,7 @@ export const lessonApi = {
 
     getLesson: async (path: TGetLessonRequestPath): Promise<TGetLessonResponse> =>
         await fetchData(`${trimEnd(getLessonEndpoint, "{id}")}${path.id}`),
+
+    getSectionAll: async (): Promise<TGetSectionAllResponse> =>
+        await fetchData(getSectionAllEndpoint),
 };

@@ -6,8 +6,6 @@ type THttpMethod = "GET" | "DELETE" | "POST" | "PUT";
 export async function fetchData<T>(endpoint: string, method: THttpMethod = "GET"): Promise<T> {
     const url = import.meta.env.VITE_API_URL + endpoint;
 
-    console.log(url);
-
     const options: RequestInit = {
         method: method, // * Или POST/PUT/DELETE, если нужно
         headers: {
@@ -32,7 +30,6 @@ export async function fetchData<T>(endpoint: string, method: THttpMethod = "GET"
  * Функция для получения данных
  */
 export async function fetchPostData<T>(endpoint: string, body: { text: string }): Promise<T> {
-    console.log(body);
     const url = import.meta.env.VITE_API_URL + endpoint;
     const options: RequestInit = {
         method: "POST", // * Или POST/PUT/DELETE, если нужно

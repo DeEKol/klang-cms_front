@@ -13,14 +13,18 @@ import { TextField } from "shared/ui/atoms/TextField";
 export function HomePage() {
     const [lessonState, setLessonState] = useState<TGetLessonResponse>();
 
-    async function fetchLesson() {
-        const lesson = await lessonApi.getLesson({ id: "8ec02106-9c95-441f-a15d-6034f5d12f9e" });
+    async function fetchLesson(id: string): Promise<TGetLessonResponse> {
+        return await lessonApi.getLesson({ id });
+    }
 
-        setLessonState(lesson);
+    async function fetchFirstLesson(): Promise<TGetLessonResponse> {
+        const sections = await lessonApi.getSectionAll();
+
+        return await fetchLesson(sections[0].lessons[0].id).then();
     }
 
     useEffect(() => {
-        fetchLesson().then();
+        fetchFirstLesson().then((data) => setLessonState(data));
     }, []);
 
     const onClickCreate = () => {
@@ -33,7 +37,7 @@ export function HomePage() {
             text: lessonState?.text ?? "",
         });
 
-        if (lesson) fetchLesson().then();
+        if (lesson) fetchFirstLesson().then((data) => setLessonState(data));
     };
 
     const onClickDelete = () => {
