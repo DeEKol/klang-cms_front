@@ -19,6 +19,7 @@ module.exports = {
     semi: ["error", "always"], // * Табуляция
     quotes: ["error", "double"], // * Одинарные кавычки
     "@typescript-eslint/no-explicit-any": "warn", // * Предупреждение при использовании типа "any"
+    "@typescript-eslint/no-unused-vars": "off",
     "prettier/prettier": [
       "error",
       {

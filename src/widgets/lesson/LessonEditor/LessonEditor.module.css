@@ -1,0 +1,11 @@
+.LessonEditor {}
+
+.titleBlock {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonsBlock {
+    display: flex;
+    gap: 8px;
+}

@@ -1,10 +1,12 @@
 // ? Slice Imports
 import styles from "./TreeView.module.css";
+import { Link } from "react-router";
 
 // ? Types
-type TInnerModel = {
+export type TInnerModel = {
     id: string;
     title: string;
+    linkTo: string;
 };
 
 export type TTreeViewModel = {
@@ -29,13 +31,13 @@ export function TreeView(props: TTreeViewProps) {
                 {Object.entries(model).map(([keyGroup, group]) => (
                     <li key={keyGroup}>
                         <p>{group.title}</p>
-                        <ul>
+                        <ol>
                             {Object.entries(group.items).map(([keyItem, item]) => (
                                 <li key={keyItem}>
-                                    <p>{item.title}</p>
+                                    <Link to={`/lesson/${item.linkTo}`}>{item.title}</Link>
                                 </li>
                             ))}
-                        </ul>
+                        </ol>
                     </li>
                 ))}
             </ul>

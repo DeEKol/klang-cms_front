@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-    "/lesson/find/{id}": {
+    "/lesson/get/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -196,6 +196,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/auth/firebase": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["AuthApiController_signInWithFirebase"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -219,11 +235,29 @@ export interface components {
              */
             text: string;
         };
+        PageResponse: {
+            /**
+             * @description uuid
+             * @example 48709c63-458e-4f90-8c39-577416a790f2
+             */
+            id: string;
+            /**
+             * @description Page text
+             * @example Page one
+             */
+            text: string;
+            /**
+             * @description Page number
+             * @example 1
+             */
+            pageNumber: number;
+        };
         LessonResponse: {
             /** @example 48709c63-458e-4f90-8c39-577416a790f2 */
             id: string;
             /** @example Lesson one */
             text: string;
+            pages: components["schemas"]["PageResponse"][];
         };
         PageUpdateRequest: {
             /**
@@ -264,23 +298,6 @@ export interface components {
              */
             pageNumber: number;
         };
-        PageResponse: {
-            /**
-             * @description uuid
-             * @example 48709c63-458e-4f90-8c39-577416a790f2
-             */
-            id: string;
-            /**
-             * @description Page text
-             * @example Page one
-             */
-            text: string;
-            /**
-             * @description Page number
-             * @example 1
-             */
-            pageNumber: number;
-        };
         SectionResponse: {
             /**
              * @description uuid
@@ -313,6 +330,7 @@ export interface components {
              */
             text: string;
         };
+        FirebaseAuthDto: Record<string, never>;
     };
     responses: never;
     parameters: never;
@@ -420,9 +438,7 @@ export interface operations {
             header?: never;
             path: {
                 /** @description uuid */
-                lessonId: string;
-                /** @description Page number */
-                pageNumber: number;
+                id: string;
             };
             cookie?: never;
         };
@@ -596,6 +612,27 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["SectionResponse"];
                 };
+            };
+        };
+    };
+    AuthApiController_signInWithFirebase: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FirebaseAuthDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };

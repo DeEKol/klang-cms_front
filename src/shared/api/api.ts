@@ -29,7 +29,7 @@ export async function fetchData<T>(endpoint: string, method: THttpMethod = "GET"
 /*
  * Функция для получения данных
  */
-export async function fetchPostData<T>(endpoint: string, body: { text: string }): Promise<T> {
+export async function fetchPostData<T>(endpoint: string, body: object): Promise<T> {
     const url = import.meta.env.VITE_API_URL + endpoint;
     const options: RequestInit = {
         method: "POST", // * Или POST/PUT/DELETE, если нужно

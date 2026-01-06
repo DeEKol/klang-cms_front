@@ -1,0 +1,1 @@
+export { pageController } from "./pageController";

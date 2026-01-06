@@ -1,0 +1,19 @@
+.Button {
+
+}
+
+.Button.default {
+    background-color: gray;
+}
+.Button.accept {
+    background-color: #5eaf5e;
+}
+.Button.cancel {
+    background-color: #ababab;
+}
+.Button.alter {
+    background-color: #6c6cc5;
+}
+.Button.delete {
+    background-color: #d34545;
+}

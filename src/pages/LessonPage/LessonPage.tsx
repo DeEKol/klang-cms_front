@@ -5,15 +5,17 @@ import { Layout } from "widgets/Layout";
 import { lessonApi } from "entities/lesson";
 import { TGetSectionAllResponse } from "entities/lesson/LessonModel";
 import { Title } from "shared/ui/atoms/Title";
-import { TreeView } from "shared/ui/molecules/TreeView";
-import { TTreeViewModel } from "../../shared/ui/molecules/TreeView/TreeView";
+import { TreeView, TTreeViewModel } from "shared/ui/molecules/TreeView";
+
+// ? Types
+type TSectionAll = TGetSectionAllResponse;
 
 /*
  * Компонент, страница уроков
  */
 export function LessonPage() {
     // ? React Variables
-    const [sectionAllState, setSectionAllState] = useState<TGetSectionAllResponse>();
+    const [sectionAllState, setSectionAllState] = useState<TSectionAll | undefined>(undefined);
 
     // ? Requests
     async function fetchSections() {
@@ -28,19 +30,20 @@ export function LessonPage() {
     }, []);
 
     // ? Utils
-    function mapToTreeView(sectionAll: TGetSectionAllResponse): TTreeViewModel {
-        return sectionAll.reduce((acc, curr) => {
+    function mapToTreeView(sectionAll: TSectionAll): TTreeViewModel {
+        return sectionAll.reduce((accSection, currSection) => {
             return {
-                ...acc,
-                [curr.id]: {
-                    id: curr.id,
-                    title: curr.text,
-                    items: curr.lessons.reduce((acc, curr) => {
+                ...accSection,
+                [currSection.id]: {
+                    id: currSection.id,
+                    title: currSection.text,
+                    items: currSection.lessons.reduce((accLesson, currLesson) => {
                         return {
-                            ...acc,
-                            [curr.id]: {
-                                id: curr.id,
-                                title: curr.text,
+                            ...accLesson,
+                            [currLesson.id]: {
+                                id: currLesson.id,
+                                title: currLesson.text,
+                                linkTo: currLesson.id,
                             },
                         };
                     }, {}),
