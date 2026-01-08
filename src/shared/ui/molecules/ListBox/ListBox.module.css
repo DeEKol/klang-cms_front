@@ -1,0 +1,10 @@
+.ListBox {
+    position: absolute;
+    background-color: #c2c2c2;
+
+    min-width: 200px;
+}
+
+.selected {
+    background-color: #8484e5;
+}

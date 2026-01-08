@@ -7,7 +7,7 @@ import styles from "./Button.module.css";
 type TButtonProps = {
     children: ReactNode;
     onClick: MouseEventHandler<HTMLButtonElement>;
-    variant?: "default" | "accept" | "cancel" | "alter" | "delete";
+    variant?: "default" | "accept" | "cancel" | "alter" | "delete" | "ghost";
     // size?: "s" | "m" | "l";
     // theme?: "light" | "dark";
     // isActive?: boolean;

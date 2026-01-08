@@ -1,4 +1,12 @@
-.LessonEditor {}
+.LessonEditor {
+    --area-width: 412px;
+    --area-height: 915px;
+}
+
+.area {
+    width: var(--area-width);
+    height: var(--area-height);
+}
 
 .titleBlock {
     display: flex;

@@ -14,11 +14,18 @@ type TLessonEditorProps = {
     page: TPage;
     options: TPageOption | undefined;
     refetchLessonsListener: () => void;
+    size?: { width: number; height: number };
 };
 
 export function LessonEditor(props: TLessonEditorProps) {
     // ? Props From
-    const { id, page: pageDefault, options, refetchLessonsListener } = props;
+    const {
+        id,
+        page: pageDefault,
+        options,
+        refetchLessonsListener,
+        size = { width: 375, height: 667 },
+    } = props;
 
     // ! React
     const [pageState, setPageState] = useState(pageDefault);
@@ -83,7 +90,13 @@ export function LessonEditor(props: TLessonEditorProps) {
                     {options.isDeleted && Buttons.delete}
                 </div>
                 <textarea
-                    style={{ width: 375, height: 667 }}
+                    style={
+                        {
+                            "--area-width": size.width + "px",
+                            "--area-height": size.height + "px",
+                        } as React.CSSProperties
+                    }
+                    className={styles.area}
                     name={pageState.pageNumber.toString()}
                     value={pageState.text}
                     onChange={handlers.onChangeTextarea}
