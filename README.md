@@ -1,3 +1,7 @@
 # klang-cms_front
 
-- var env: `import.meta.env.VITE_TEST`
+### Start Dev
+- `npm i`
+- `npm run dev`
+
+### var env: `import.meta.env.VITE_TEST`
