@@ -1,0 +1,24 @@
+// ? Library Imports
+import React from "react";
+// ? Slice Imports
+import styles from "./{{pascalCase name}}.module.css";
+
+// ? Types
+type T{{pascalCase name}}Props = {
+    // * Добавьте пропсы здесь
+};
+
+/*
+ * Component
+ */
+export function {{pascalCase name}}(props: T{{pascalCase name}}Props) {
+    // ? Props From
+    const {} = props;
+
+    // ? Render
+    return (
+        <div className={ styles.{{pascalCase name}} }>
+            <div>{{pascalCase name}}</div>
+        </div>
+    );
+};
