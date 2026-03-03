@@ -11,6 +11,7 @@
     text-transform: uppercase;
     cursor: pointer;
     transition: opacity 0.15s ease, transform 0.1s ease;
+    pointer-events: auto;
 }
 
 .Button:hover {

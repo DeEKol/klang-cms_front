@@ -1,4 +1,5 @@
 .ComboBox {
     position: relative;
     display: inline-block;
+    pointer-events: none;
 }
