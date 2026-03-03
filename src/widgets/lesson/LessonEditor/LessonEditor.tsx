@@ -6,6 +6,7 @@ import { pageController } from "features/lesson";
 import { TPage, TPageOption } from "entities/lesson";
 import { Title } from "shared/ui/atoms/Title";
 import { Button } from "shared/ui/atoms/Button";
+import { ChevronSvg } from "shared/ui/molecules/ChevronTrigger";
 // ? Slice Imports
 import styles from "./LessonEditor.module.css";
 
@@ -30,6 +31,7 @@ export function LessonEditor(props: TLessonEditorProps) {
 
     // ! React
     const [pageState, setPageState] = useState(pageDefault);
+    const [isCollapsedState, setIsCollapsedState] = useState(false);
 
     // // ? Life Cycles
     useEffect(() => {
@@ -80,6 +82,15 @@ export function LessonEditor(props: TLessonEditorProps) {
                 Отменить
             </Button>
         ),
+        collapse: (
+            <Button
+                key="collapse"
+                variant="ghost"
+                onClick={() => setIsCollapsedState((prev) => !prev)}
+            >
+                <ChevronSvg isOpen={!isCollapsedState} />
+            </Button>
+        ),
     };
 
     // ? Render
@@ -87,34 +98,40 @@ export function LessonEditor(props: TLessonEditorProps) {
         options && (
             <div className={styles.LessonEditor}>
                 <div className={styles.titleBlock}>
-                    <Title>Page {pageState.pageNumber}</Title>
-                    {options.isDeleted && Buttons.delete}
-                </div>
-                <div className={styles.editorRow}>
-                    <textarea
-                        style={
-                            {
-                                "--area-width": size.width + "px",
-                                "--area-height": size.height + "px",
-                            } as React.CSSProperties
-                        }
-                        className={styles.area}
-                        name={pageState.pageNumber.toString()}
-                        value={pageState.text}
-                        onChange={handlers.onChangeTextarea}
-                    ></textarea>
-                    <div
-                        style={{ width: size.width, height: size.height }}
-                        className={styles.preview}
-                    >
-                        <ReactMarkdown>{pageState.text}</ReactMarkdown>
+                    <div className={styles.titleName}>
+                        <Title>Page {pageState.pageNumber}</Title>
+                        {Buttons.collapse}
                     </div>
+                    <div className={styles.titleActions}>{options.isDeleted && Buttons.delete}</div>
                 </div>
-
-                {options.buttonsBlock && (
-                    <div className={styles.buttonsBlock}>
-                        {options.buttonsBlock.map((name) => Buttons[name])}
-                    </div>
+                {!isCollapsedState && (
+                    <>
+                        <div className={styles.editorRow}>
+                            <textarea
+                                style={
+                                    {
+                                        "--area-width": size.width + "px",
+                                        "--area-height": size.height + "px",
+                                    } as React.CSSProperties
+                                }
+                                className={styles.area}
+                                name={pageState.pageNumber.toString()}
+                                value={pageState.text}
+                                onChange={handlers.onChangeTextarea}
+                            ></textarea>
+                            <div
+                                style={{ width: size.width, height: size.height }}
+                                className={styles.preview}
+                            >
+                                <ReactMarkdown>{pageState.text}</ReactMarkdown>
+                            </div>
+                        </div>
+                        {options.buttonsBlock && (
+                            <div className={styles.buttonsBlock}>
+                                {options.buttonsBlock.map((name) => Buttons[name])}
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
         )
