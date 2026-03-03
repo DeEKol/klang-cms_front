@@ -38,8 +38,8 @@ export function TreeView(props: TTreeViewProps) {
                             {Object.entries(group.items).map(([keyItem, item]) => (
                                 <li key={keyItem}>
                                     <Link to={`/lesson/${item.linkTo}`} variant="nav">
-                                    {item.title}
-                                </Link>
+                                        {item.title}
+                                    </Link>
                                 </li>
                             ))}
                         </ol>
