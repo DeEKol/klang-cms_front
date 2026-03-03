@@ -1,11 +1,18 @@
 .pageHeader {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
     width: 100%;
     padding-bottom: 20px;
     margin-bottom: 4px;
     border-bottom: 1px solid var(--color-border);
+}
+
+.pageHeaderRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .lessonsBlock {

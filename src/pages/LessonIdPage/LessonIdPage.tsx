@@ -12,6 +12,7 @@ import {
     TSize,
 } from "entities/phone";
 import { Title } from "shared/ui/atoms/Title";
+import { Breadcrumbs } from "shared/ui/atoms";
 import { SelectorButtonListbox } from "shared/ui/organisms/SelectorButtonListbox";
 import { TOption } from "shared/ui/molecules/ListBox";
 // ? Slice Imports
@@ -63,22 +64,30 @@ export function LessonIdPage() {
     return lessonState && pagesCortege ? (
         <Layout>
             <div className={styles.pageHeader}>
-                <Title>Урок {lessonState.text}</Title>
-                <SelectorButtonListbox
-                    options={phoneSizesToSelectorModel(phoneSize)}
-                    selectedKey={"Samsung Galaxy S24 Ultra"}
-                    selectListener={(option) => {
-                        if (option !== undefined)
-                            setPhoneSizeState(
-                                phoneSize[
-                                    convertStringToTPhoneModelsAlias(
-                                        option?.value,
-                                        "Samsung Galaxy S24 Ultra",
-                                    )
-                                ],
-                            );
-                    }}
+                <Breadcrumbs
+                    items={[
+                        { label: "Уроки", to: "/lesson" },
+                        { label: `Урок ${lessonState.text}` },
+                    ]}
                 />
+                <div className={styles.pageHeaderRow}>
+                    <Title>Урок {lessonState.text}</Title>
+                    <SelectorButtonListbox
+                        options={phoneSizesToSelectorModel(phoneSize)}
+                        selectedKey={"Samsung Galaxy S24 Ultra"}
+                        selectListener={(option) => {
+                            if (option !== undefined)
+                                setPhoneSizeState(
+                                    phoneSize[
+                                        convertStringToTPhoneModelsAlias(
+                                            option?.value,
+                                            "Samsung Galaxy S24 Ultra",
+                                        )
+                                    ],
+                                );
+                        }}
+                    />
+                </div>
             </div>
             <div className={styles.lessonsBlock}>
                 {[...pagesCortege[0]].map(([key, page]) => (

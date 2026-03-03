@@ -1,0 +1,16 @@
+.Breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+}
+
+.separator {
+    color: var(--color-border);
+    user-select: none;
+}
+
+.current {
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
