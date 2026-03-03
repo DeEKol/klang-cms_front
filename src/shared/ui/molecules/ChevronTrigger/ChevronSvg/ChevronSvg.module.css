@@ -1,0 +1,8 @@
+.ChevronSvg {
+    display: flex;
+    transition: transform 0.15s ease;
+}
+
+.ChevronSvg.open {
+    transform: rotate(180deg);
+}

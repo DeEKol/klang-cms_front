@@ -1,0 +1,9 @@
+.ChevronTrigger {
+    padding: 1rem;
+}
+
+.triggerInner {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}

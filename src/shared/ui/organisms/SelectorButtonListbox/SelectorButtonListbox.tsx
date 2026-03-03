@@ -6,6 +6,7 @@ import { ComboBox } from "../../atoms/ComboBox";
 import { Button } from "../../atoms/Button";
 import { ListBox } from "../../molecules/ListBox";
 import { TOption } from "../../molecules/ListBox";
+import { ChevronTrigger } from "../../molecules/ChevronTrigger";
 
 type SelectorButtonListboxProps = {
     options: Map<string | undefined, TOption>;
@@ -38,9 +39,12 @@ export function SelectorButtonListbox(props: SelectorButtonListboxProps) {
         <div className={styles.SelectorButtonListbox}>
             <ComboBox
                 trigger={
-                    <Button onClick={() => setIsOpenState((prevState) => !prevState)}>
-                        {options.get(selectState)?.name ?? "Выбор"}
-                    </Button>
+                    <ChevronTrigger
+                        options={options}
+                        select={selectState}
+                        isOpen={isOpenState}
+                        onClick={() => setIsOpenState((prevState) => !prevState)}
+                    />
                 }
                 popup={
                     <ListBox
