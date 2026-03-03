@@ -1,33 +1,73 @@
 .Button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.1s ease;
+}
 
+.Button:hover {
+    opacity: 0.8;
+}
+
+.Button:active {
+    transform: scale(0.97);
+    opacity: 0.65;
 }
 
 .Button.default {
-    background-color: gray;
+    background-color: var(--color-accent-tint);
+    color: var(--color-accent-on);
 }
+
 .Button.accept {
-    background-color: #5eaf5e;
+    background-color: var(--color-accept-tint);
+    color: var(--color-accept-on);
 }
+
 .Button.cancel {
-    background-color: #ababab;
+    background-color: var(--color-cancel-tint);
+    color: var(--color-cancel-on);
 }
+
 .Button.alter {
-    background-color: #6c6cc5;
+    background-color: var(--color-alter-tint);
+    color: var(--color-alter-on);
 }
+
 .Button.delete {
-    background-color: #d34545;
+    background-color: var(--color-delete-tint);
+    color: var(--color-delete-on);
 }
+
 .Button.ghost {
     display: block;
     background-color: transparent;
     border: none;
+    border-radius: 6px;
     width: 100%;
     height: 100%;
     padding: 0;
     text-align: start;
-
-    transition: background-color 0.3s ease;
+    text-transform: none;
+    letter-spacing: 0;
+    color: inherit;
+    transition: background-color 0.2s ease;
 }
-.ghost:hover {
-    background-color: rgba(0, 0, 0, 0.3);
+
+.Button.ghost:hover {
+    background-color: var(--color-overlay-hover);
+}
+
+.Button.ghost:active {
+    transform: none;
+    background-color: var(--color-overlay-active);
+    opacity: 1;
 }

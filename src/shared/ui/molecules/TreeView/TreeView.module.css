@@ -1,3 +1,47 @@
 .TreeView {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
 
+.TreeView > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* --- Section card --- */
+.TreeView > ul > li {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* --- Section title --- */
+.TreeView > ul > li > p {
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+}
+
+/* --- Lesson list --- */
+.TreeView ol {
+    list-style: none;
+    margin: 0;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.TreeView ol > li {
+    border-radius: 6px;
+    overflow: hidden;
 }

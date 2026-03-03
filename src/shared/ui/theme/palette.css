@@ -1,0 +1,30 @@
+/* Theme: Chalk — light neutral + violet accent */
+:root {
+    --color-bg: #f4f4f6;
+    --color-surface: #ffffff;
+    --color-border: #e2e2e8;
+
+    --color-text: #18181b;
+    --color-text-muted: #71717a;
+
+    --color-overlay-hover: #18181b0d;   /* ~5% */
+    --color-overlay-active: #18181b1a;  /* ~10% */
+
+    --color-accent: #6d4aff;
+    --color-accept: #16a34a;
+    --color-cancel: #a1a1aa;
+    --color-delete: #dc2626;
+    --color-alter: #2563eb;
+
+    /* Button tints — bg + matching text */
+    --color-accent-tint: #ede9ff;
+    --color-accent-on:   #4f28e0;
+    --color-accept-tint: #dcfce7;
+    --color-accept-on:   #15803d;
+    --color-cancel-tint: #f4f4f5;
+    --color-cancel-on:   #52525b;
+    --color-delete-tint: #fee2e2;
+    --color-delete-on:   #b91c1c;
+    --color-alter-tint:  #dbeafe;
+    --color-alter-on:    #1d4ed8;
+}

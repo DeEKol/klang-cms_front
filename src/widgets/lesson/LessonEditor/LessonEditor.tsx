@@ -1,5 +1,6 @@
 // ? Library Imports
 import React, { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 // ? Layer Imports
 import { pageController } from "features/lesson";
 import { TPage, TPageOption } from "entities/lesson";
@@ -89,18 +90,26 @@ export function LessonEditor(props: TLessonEditorProps) {
                     <Title>Page {pageState.pageNumber}</Title>
                     {options.isDeleted && Buttons.delete}
                 </div>
-                <textarea
-                    style={
-                        {
-                            "--area-width": size.width + "px",
-                            "--area-height": size.height + "px",
-                        } as React.CSSProperties
-                    }
-                    className={styles.area}
-                    name={pageState.pageNumber.toString()}
-                    value={pageState.text}
-                    onChange={handlers.onChangeTextarea}
-                ></textarea>
+                <div className={styles.editorRow}>
+                    <textarea
+                        style={
+                            {
+                                "--area-width": size.width + "px",
+                                "--area-height": size.height + "px",
+                            } as React.CSSProperties
+                        }
+                        className={styles.area}
+                        name={pageState.pageNumber.toString()}
+                        value={pageState.text}
+                        onChange={handlers.onChangeTextarea}
+                    ></textarea>
+                    <div
+                        style={{ width: size.width, height: size.height }}
+                        className={styles.preview}
+                    >
+                        <ReactMarkdown>{pageState.text}</ReactMarkdown>
+                    </div>
+                </div>
 
                 {options.buttonsBlock && (
                     <div className={styles.buttonsBlock}>

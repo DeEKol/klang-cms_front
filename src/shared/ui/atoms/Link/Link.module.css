@@ -1,0 +1,86 @@
+.Link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+/* --- sizes --- */
+.s {
+    padding: 3px 10px;
+    font-size: 12px;
+}
+
+.m {
+    padding: 6px 16px;
+    font-size: 13px;
+}
+
+.l {
+    padding: 8px 22px;
+    font-size: 15px;
+}
+
+/* --- link --- */
+.Link.link {
+    padding: 0;
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.Link.link:hover {
+    opacity: 0.75;
+}
+
+/* --- nav --- */
+.Link.nav {
+    color: var(--color-text-muted);
+    font-weight: 500;
+    border-radius: 6px;
+}
+
+.Link.nav:hover {
+    color: var(--color-text);
+    background-color: var(--color-overlay-hover);
+}
+
+.Link.nav:active {
+    background-color: var(--color-overlay-active);
+}
+
+/* --- button variants --- */
+.Link.button,
+.Link.button-accept,
+.Link.button-cancel,
+.Link.button-delete,
+.Link.button-alter {
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    border-radius: 6px;
+}
+
+.Link.button:hover,
+.Link.button-accept:hover,
+.Link.button-cancel:hover,
+.Link.button-delete:hover,
+.Link.button-alter:hover {
+    opacity: 0.85;
+}
+
+.Link.button:active,
+.Link.button-accept:active,
+.Link.button-cancel:active,
+.Link.button-delete:active,
+.Link.button-alter:active {
+    opacity: 0.7;
+}
+
+.Link.button         { background-color: var(--color-accent); }
+.Link.button-accept  { background-color: var(--color-accept); }
+.Link.button-cancel  { background-color: var(--color-cancel); }
+.Link.button-delete  { background-color: var(--color-delete); }
+.Link.button-alter   { background-color: var(--color-alter);  }

@@ -1,19 +1,64 @@
 .LessonEditor {
     --area-width: 412px;
     --area-height: 915px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    padding: 20px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+}
+
+.titleBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.editorRow {
+    display: flex;
+    gap: 20px;
 }
 
 .area {
     width: var(--area-width);
     height: var(--area-height);
+    padding: 12px;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+    transition: border-color 0.15s ease;
 }
 
-.titleBlock {
-    display: flex;
-    justify-content: space-between;
+.area:focus {
+    border-color: var(--color-accent);
+}
+
+.preview {
+    padding: 12px;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-y: auto;
+    color: var(--color-text);
 }
 
 .buttonsBlock {
     display: flex;
     gap: 8px;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-border);
 }

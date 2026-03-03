@@ -1,6 +1,6 @@
 // ? Layer Imports
 import { Layout } from "widgets/Layout";
-import { Title } from "shared/ui/atoms/Title";
+import { Stub } from "shared/ui/atoms";
 
 /*
  * Компонент, главная cтраница
@@ -8,7 +8,7 @@ import { Title } from "shared/ui/atoms/Title";
 export function HomePage() {
     return (
         <Layout>
-            <Title>Home Page</Title>
+            <Stub title="Home" description="Главная страница в разработке" />
         </Layout>
     );
 }

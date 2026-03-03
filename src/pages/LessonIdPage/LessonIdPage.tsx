@@ -54,7 +54,7 @@ export function LessonIdPage() {
     function phoneSizesToSelectorModel(
         sizes: Record<TPhoneModelsAlias, TSize>,
     ): Map<string | undefined, TOption> {
-        return Object.entries(sizes).reduce((acc, [key, size]) => {
+        return Object.entries(sizes).reduce((acc, [key, _size]) => {
             return acc.set(key, { name: key, value: key });
         }, new Map<string | undefined, TOption>());
     }
@@ -62,22 +62,24 @@ export function LessonIdPage() {
     // ? Render
     return lessonState && pagesCortege ? (
         <Layout>
-            <Title>Урок {lessonState.text}</Title>
-            <SelectorButtonListbox
-                options={phoneSizesToSelectorModel(phoneSize)}
-                selectedKey={"Samsung Galaxy S24 Ultra"}
-                selectListener={(option) => {
-                    if (option !== undefined)
-                        setPhoneSizeState(
-                            phoneSize[
-                                convertStringToTPhoneModelsAlias(
-                                    option?.value,
-                                    "Samsung Galaxy S24 Ultra",
-                                )
-                            ],
-                        );
-                }}
-            />
+            <div className={styles.pageHeader}>
+                <Title>Урок {lessonState.text}</Title>
+                <SelectorButtonListbox
+                    options={phoneSizesToSelectorModel(phoneSize)}
+                    selectedKey={"Samsung Galaxy S24 Ultra"}
+                    selectListener={(option) => {
+                        if (option !== undefined)
+                            setPhoneSizeState(
+                                phoneSize[
+                                    convertStringToTPhoneModelsAlias(
+                                        option?.value,
+                                        "Samsung Galaxy S24 Ultra",
+                                    )
+                                ],
+                            );
+                    }}
+                />
+            </div>
             <div className={styles.lessonsBlock}>
                 {[...pagesCortege[0]].map(([key, page]) => (
                     <LessonEditor

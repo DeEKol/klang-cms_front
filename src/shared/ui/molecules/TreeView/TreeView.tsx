@@ -1,6 +1,6 @@
 // ? Slice Imports
 import styles from "./TreeView.module.css";
-import { Link } from "react-router";
+import { Link } from "shared/ui/atoms";
 
 // ? Types
 export type TInnerModel = {
@@ -21,6 +21,9 @@ type TTreeViewProps = {
     model: TTreeViewModel;
 };
 
+/*
+ * Компонент Дерево отображения
+ */
 export function TreeView(props: TTreeViewProps) {
     // ? Props From
     const { model } = props;
@@ -34,7 +37,9 @@ export function TreeView(props: TTreeViewProps) {
                         <ol>
                             {Object.entries(group.items).map(([keyItem, item]) => (
                                 <li key={keyItem}>
-                                    <Link to={`/lesson/${item.linkTo}`}>{item.title}</Link>
+                                    <Link to={`/lesson/${item.linkTo}`} variant="nav">
+                                    {item.title}
+                                </Link>
                                 </li>
                             ))}
                         </ol>

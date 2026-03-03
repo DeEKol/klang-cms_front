@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 // ? Layer Imports
 import { Layout } from "widgets/Layout";
 import { lessonApi } from "entities/lesson";
-import { TGetSectionAllResponse } from "entities/lesson/LessonModel";
+import { TGetSectionAllResponse } from "entities/lesson";
 import { Title } from "shared/ui/atoms/Title";
 import { TreeView, TTreeViewModel } from "shared/ui/molecules/TreeView";
+// ? Slice Imports
+import styles from "./LessonPage.module.css";
 
 // ? Types
 type TSectionAll = TGetSectionAllResponse;
@@ -55,12 +57,16 @@ export function LessonPage() {
     // ? Render
     return (
         <Layout>
-            <Title>Уроки</Title>
-            {sectionAllState ? (
-                <TreeView model={mapToTreeView(sectionAllState)} />
-            ) : (
-                <p>Загрузка...</p>
-            )}
+            <div className={styles.pageHeader}>
+                <Title>Уроки</Title>
+            </div>
+            <div className={styles.content}>
+                {sectionAllState ? (
+                    <TreeView model={mapToTreeView(sectionAllState)} />
+                ) : (
+                    <p>Загрузка...</p>
+                )}
+            </div>
         </Layout>
     );
 }

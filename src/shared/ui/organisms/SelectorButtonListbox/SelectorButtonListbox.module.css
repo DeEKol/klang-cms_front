@@ -1,1 +1,3 @@
-.SelectorButtonListbox {}
+.SelectorButtonListbox {
+    display: inline-block;
+}
