@@ -19,6 +19,9 @@ type TLessonEditorProps = {
     size?: { width: number; height: number };
 };
 
+/*
+ * Компонент Редактирование урока
+ */
 export function LessonEditor(props: TLessonEditorProps) {
     // ? Props From
     const {
@@ -33,7 +36,7 @@ export function LessonEditor(props: TLessonEditorProps) {
     const [pageState, setPageState] = useState(pageDefault);
     const [isCollapsedState, setIsCollapsedState] = useState(false);
 
-    // // ? Life Cycles
+    // ? Life Cycles
     useEffect(() => {
         setPageState(pageDefault);
     }, [pageDefault]);
@@ -58,6 +61,7 @@ export function LessonEditor(props: TLessonEditorProps) {
             setPageState((prevState) => {
                 return { ...prevState, text: e.target.value };
             }),
+        onClickCollapse: () => setIsCollapsedState((prev) => !prev),
     };
 
     // ? UI
@@ -83,11 +87,7 @@ export function LessonEditor(props: TLessonEditorProps) {
             </Button>
         ),
         collapse: (
-            <Button
-                key="collapse"
-                variant="ghost"
-                onClick={() => setIsCollapsedState((prev) => !prev)}
-            >
+            <Button key="collapse" variant="ghost" onClick={handlers.onClickCollapse}>
                 <ChevronSvg isOpen={!isCollapsedState} />
             </Button>
         ),
@@ -99,7 +99,7 @@ export function LessonEditor(props: TLessonEditorProps) {
             <div className={styles.LessonEditor}>
                 <div className={styles.titleBlock}>
                     <div className={styles.titleName}>
-                        <Title>Page {pageState.pageNumber}</Title>
+                        <Title>Страница {pageState.pageNumber}</Title>
                         {Buttons.collapse}
                     </div>
                     <div className={styles.titleActions}>{options.isDeleted && Buttons.delete}</div>
