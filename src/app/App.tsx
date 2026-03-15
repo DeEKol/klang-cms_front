@@ -9,16 +9,21 @@ import { NotFoundPage } from "../pages/NotFoundPage";
 import { SwaggerDoc } from "../pages/SwaggerDoc";
 import { LessonPage } from "../pages/LessonPage";
 import { LessonIdPage } from "../pages/LessonIdPage";
+import { SignInPage } from "../pages/SignInPage";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 const router = createBrowserRouter([
-    { path: "/", element: <HomePage /> },
-    { path: "/about", element: <AboutPage /> },
+    { path: "/sign-in", element: <SignInPage /> },
     { path: "*", element: <NotFoundPage /> }, // * Обработчик 404
-    { path: "/api-docs", element: <SwaggerDoc /> },
-    { path: "/lesson", element: <LessonPage /> },
     {
-        path: "/lesson/:id",
-        element: <LessonIdPage />,
+        element: <ProtectedRoute />,
+        children: [
+            { path: "/", element: <HomePage /> },
+            { path: "/about", element: <AboutPage /> },
+            { path: "/api-docs", element: <SwaggerDoc /> },
+            { path: "/lesson", element: <LessonPage /> },
+            { path: "/lesson/:id", element: <LessonIdPage /> },
+        ],
     },
 ]);
 

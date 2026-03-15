@@ -151,6 +151,68 @@ export const pageController = {
 }
 ```
 
+## Design Theme: Chalk
+
+Theme files: [src/shared/ui/theme/palette.css](src/shared/ui/theme/palette.css), [src/shared/ui/theme/fonts.css](src/shared/ui/theme/fonts.css)
+
+Font: **Inter** (`--font-sans`), imported via Google Fonts.
+
+### CSS Variables (palette.css)
+
+```css
+/* Backgrounds */
+--color-bg: #f4f4f6;          /* page background */
+--color-surface: #ffffff;      /* card / panel surface */
+--color-border: #e2e2e8;       /* borders, dividers */
+
+/* Text */
+--color-text: #18181b;         /* primary text */
+--color-text-muted: #71717a;   /* secondary / label text */
+
+/* Overlays */
+--color-overlay-hover: #18181b0d;   /* ~5%  — ghost button hover bg */
+--color-overlay-active: #18181b1a;  /* ~10% — ghost button active bg */
+
+/* Semantic colors (raw) */
+--color-accent: #6d4aff;   /* violet — primary action */
+--color-accept: #16a34a;   /* green  — confirm / success */
+--color-cancel: #a1a1aa;   /* gray   — neutral / cancel */
+--color-delete: #dc2626;   /* red    — destructive */
+--color-alter:  #2563eb;   /* blue   — alternative action */
+
+/* Button tints: bg + text-on-bg pairs */
+--color-accent-tint: #ede9ff;  --color-accent-on: #4f28e0;
+--color-accept-tint: #dcfce7;  --color-accept-on: #15803d;
+--color-cancel-tint: #f4f4f5;  --color-cancel-on: #52525b;
+--color-delete-tint: #fee2e2;  --color-delete-on: #b91c1c;
+--color-alter-tint:  #dbeafe;  --color-alter-on:  #1d4ed8;
+```
+
+### Button Component
+
+[src/shared/ui/atoms/Button/Button.tsx](src/shared/ui/atoms/Button/Button.tsx)
+
+```tsx
+<Button variant="default | accept | cancel | alter | delete | ghost" onClick={handler}>
+    Label
+</Button>
+```
+
+Base styles: `border-radius: 6px`, `font-size: 13px`, `font-weight: 500`, `letter-spacing: 0.04em`, `text-transform: uppercase`.
+Transitions: `opacity 0.15s ease`, `transform 0.1s ease`. Hover → `opacity: 0.8`. Active → `scale(0.97)`.
+`ghost` variant: transparent bg, full-width block, inherits color, uses overlay tokens on hover/active.
+
+### Usage in CSS Modules
+
+Always use CSS variables from palette — never hardcode colors. Example:
+```css
+.myElement {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+}
+```
+
 ## Notes
 
 - The application is in early development (v1.0.0)

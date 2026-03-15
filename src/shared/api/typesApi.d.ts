@@ -205,7 +205,39 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["AuthApiController_signInWithFirebase"];
+        post: operations["UserApiController_signInWithFirebase"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/workers/auth/sign-in": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["WorkerApiController_signIn"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/workers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["WorkerApiController_createWorker"];
         delete?: never;
         options?: never;
         head?: never;
@@ -330,7 +362,79 @@ export interface components {
              */
             text: string;
         };
-        FirebaseAuthDto: Record<string, never>;
+        FirebaseAuthRequest: {
+            /**
+             * @description Firebase ID token
+             * @example eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
+             */
+            idToken: string;
+        };
+        AuthResponse: {
+            /** @example eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... */
+            accessToken: string;
+            /** @example a3f8d2e1b0c4... */
+            refreshToken: string;
+            /** @example 15m */
+            expiresIn: string;
+        };
+        SignInRequest: {
+            /**
+             * @description Worker email
+             * @example admin@example.com
+             */
+            email: string;
+            /**
+             * @description Worker password
+             * @example secret123
+             */
+            password: string;
+        };
+        WorkerAuthResponse: {
+            /** @example eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... */
+            accessToken: string;
+            /** @example a3f8d2e1b0c4... */
+            refreshToken: string;
+            /** @example 15m */
+            expiresIn: string;
+        };
+        CreateWorkerRequest: {
+            /**
+             * @description Worker email
+             * @example editor@example.com
+             */
+            email: string;
+            /**
+             * @description Worker password (min 6 chars)
+             * @example secret123
+             */
+            password: string;
+            /**
+             * @description Worker role
+             * @example editor
+             * @enum {string}
+             */
+            role: "admin" | "editor";
+            /**
+             * @description Display name
+             * @example John Doe
+             */
+            displayName?: string;
+        };
+        WorkerResponse: {
+            /** @example 550e8400-e29b-41d4-a716-446655440000 */
+            id: string;
+            /** @example editor@example.com */
+            email: string;
+            /**
+             * @example editor
+             * @enum {string}
+             */
+            role: "admin" | "editor";
+            /** @example John Doe */
+            displayName?: string;
+            /** Format: date-time */
+            createdAt: string;
+        };
     };
     responses: never;
     parameters: never;
@@ -615,7 +719,7 @@ export interface operations {
             };
         };
     };
-    AuthApiController_signInWithFirebase: {
+    UserApiController_signInWithFirebase: {
         parameters: {
             query?: never;
             header?: never;
@@ -624,15 +728,66 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["FirebaseAuthDto"];
+                "application/json": components["schemas"]["FirebaseAuthRequest"];
             };
         };
         responses: {
+            /** @description Sign in with Firebase token */
             201: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["AuthResponse"];
+                };
+            };
+        };
+    };
+    WorkerApiController_signIn: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SignInRequest"];
+            };
+        };
+        responses: {
+            /** @description Sign in with email and password */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WorkerAuthResponse"];
+                };
+            };
+        };
+    };
+    WorkerApiController_createWorker: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateWorkerRequest"];
+            };
+        };
+        responses: {
+            /** @description Create a new worker */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WorkerResponse"];
+                };
             };
         };
     };
