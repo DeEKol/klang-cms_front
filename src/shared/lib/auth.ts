@@ -1,5 +1,4 @@
 const ACCESS_TOKEN_KEY = "accessToken";
-const REFRESH_TOKEN_KEY = "refreshToken";
 
 function decodeJwtPayload(token: string): Record<string, unknown> | null {
     try {
@@ -27,12 +26,10 @@ export function isAuthenticated(): boolean {
     return !isTokenExpired(token);
 }
 
-export function saveTokens(accessToken: string, refreshToken: string): void {
+export function saveTokens(accessToken: string): void {
     localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
-    localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
 }
 
 export function clearTokens(): void {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
-    localStorage.removeItem(REFRESH_TOKEN_KEY);
 }

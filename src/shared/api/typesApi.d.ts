@@ -4,39 +4,55 @@
  */
 
 export interface paths {
-    "/lesson/get/{id}": {
+    "/cms/sections": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["LessonApiController_findOne"];
+        get: operations["LessonCmsController_getSections"];
+        put?: never;
+        post: operations["LessonCmsController_createSection"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/cms/sections/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["LessonCmsController_getSection"];
         put?: never;
         post?: never;
-        delete?: never;
+        delete: operations["LessonCmsController_deleteSection"];
         options?: never;
         head?: never;
-        patch?: never;
+        patch: operations["LessonCmsController_updateSection"];
         trace?: never;
     };
-    "/lesson/delete/{id}": {
+    "/cms/lessons/{id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        get: operations["LessonCmsController_getLesson"];
         put?: never;
         post?: never;
-        delete: operations["LessonApiController_deleteOne"];
+        delete: operations["LessonCmsController_deleteLesson"];
         options?: never;
         head?: never;
-        patch?: never;
+        patch: operations["LessonCmsController_updateLesson"];
         trace?: never;
     };
-    "/lesson/update": {
+    "/cms/lessons": {
         parameters: {
             query?: never;
             header?: never;
@@ -45,14 +61,14 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["LessonApiController_update"];
+        post: operations["LessonCmsController_createLesson"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/lesson/create": {
+    "/cms/pages": {
         parameters: {
             query?: never;
             header?: never;
@@ -61,94 +77,14 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post: operations["LessonApiController_create"];
+        post: operations["LessonCmsController_createPage"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/page/delete/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete: operations["PageApiController_deletePage"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/page/update": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["PageApiController_updatePage"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/page/create": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["PageApiController_createPage"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/section/find-all": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["SectionApiController_findAll"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/section/find/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["SectionApiController_findOne"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/section/delete/{id}": {
+    "/cms/pages/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -158,61 +94,13 @@ export interface paths {
         get?: never;
         put?: never;
         post?: never;
-        delete: operations["SectionApiController_deleteOne"];
+        delete: operations["LessonCmsController_deletePage"];
         options?: never;
         head?: never;
-        patch?: never;
+        patch: operations["LessonCmsController_updatePage"];
         trace?: never;
     };
-    "/section/update": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["SectionApiController_update"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/section/create": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["SectionApiController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/auth/firebase": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["UserApiController_signInWithFirebase"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/workers/auth/sign-in": {
+    "/cms/workers/auth/sign-in": {
         parameters: {
             query?: never;
             header?: never;
@@ -228,7 +116,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/workers": {
+    "/cms/workers/auth/refresh": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["WorkerApiController_refresh"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/cms/workers": {
         parameters: {
             query?: never;
             header?: never;
@@ -248,25 +152,6 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        LessonUpdateRequest: {
-            /**
-             * @description uuid
-             * @example 48709c63-458e-4f90-8c39-577416a790f2
-             */
-            id: string;
-            /**
-             * @description Lesson text
-             * @example Lesson one
-             */
-            text: string;
-        };
-        LessonRequest: {
-            /**
-             * @description Lesson text
-             * @example Lesson one
-             */
-            text: string;
-        };
         PageResponse: {
             /**
              * @description uuid
@@ -291,6 +176,74 @@ export interface components {
             text: string;
             pages: components["schemas"]["PageResponse"][];
         };
+        SectionResponse: {
+            /**
+             * @description uuid
+             * @example 48709c63-458e-4f90-8c39-577416a790f2
+             */
+            id: string;
+            /**
+             * @description Section text
+             * @example Section one
+             */
+            text: string;
+            lessons: components["schemas"]["LessonResponse"][];
+        };
+        SectionCreateRequest: {
+            /**
+             * @description Section text
+             * @example Section one
+             */
+            text: string;
+        };
+        SectionUpdateRequest: {
+            /**
+             * @description uuid
+             * @example 48709c63-458e-4f90-8c39-577416a790f2
+             */
+            id: string;
+            /**
+             * @description Section text
+             * @example Section one
+             */
+            text: string;
+        };
+        LessonRequest: {
+            /**
+             * @description Lesson text
+             * @example Lesson one
+             */
+            text: string;
+        };
+        LessonUpdateRequest: {
+            /**
+             * @description uuid
+             * @example 48709c63-458e-4f90-8c39-577416a790f2
+             */
+            id: string;
+            /**
+             * @description Lesson text
+             * @example Lesson one
+             */
+            text: string;
+        };
+        PageCreateRequest: {
+            /**
+             * @description Page text
+             * @example Page one
+             */
+            text: string;
+            /**
+             * @description uuid
+             * @example 4a2f7cce-548e-49d6-af56-c86f6f5a4e8d
+             */
+            lessonId: string;
+            /**
+             * @description Page number
+             * @example 1
+             */
+            pageNumber: number;
+        };
         PageUpdateRequest: {
             /**
              * @description uuid
@@ -313,70 +266,6 @@ export interface components {
              */
             pageNumber?: number;
         };
-        PageCreateRequest: {
-            /**
-             * @description Page text
-             * @example Page one
-             */
-            text: string;
-            /**
-             * @description uuid
-             * @example 4a2f7cce-548e-49d6-af56-c86f6f5a4e8d
-             */
-            lessonId: string;
-            /**
-             * @description Page number
-             * @example 1
-             */
-            pageNumber: number;
-        };
-        SectionResponse: {
-            /**
-             * @description uuid
-             * @example 48709c63-458e-4f90-8c39-577416a790f2
-             */
-            id: string;
-            /**
-             * @description Section text
-             * @example Section one
-             */
-            text: string;
-            lessons: components["schemas"]["LessonResponse"][];
-        };
-        SectionUpdateRequest: {
-            /**
-             * @description uuid
-             * @example 48709c63-458e-4f90-8c39-577416a790f2
-             */
-            id: string;
-            /**
-             * @description Section text
-             * @example Section one
-             */
-            text: string;
-        };
-        SectionCreateRequest: {
-            /**
-             * @description Section text
-             * @example Section one
-             */
-            text: string;
-        };
-        FirebaseAuthRequest: {
-            /**
-             * @description Firebase ID token
-             * @example eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
-             */
-            idToken: string;
-        };
-        AuthResponse: {
-            /** @example eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... */
-            accessToken: string;
-            /** @example a3f8d2e1b0c4... */
-            refreshToken: string;
-            /** @example 15m */
-            expiresIn: string;
-        };
         SignInRequest: {
             /**
              * @description Worker email
@@ -392,8 +281,6 @@ export interface components {
         WorkerAuthResponse: {
             /** @example eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... */
             accessToken: string;
-            /** @example a3f8d2e1b0c4... */
-            refreshToken: string;
             /** @example 15m */
             expiresIn: string;
         };
@@ -444,170 +331,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    LessonApiController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Get one */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["LessonResponse"] | null;
-                };
-            };
-        };
-    };
-    LessonApiController_deleteOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Delete one */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": boolean;
-                };
-            };
-        };
-    };
-    LessonApiController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["LessonUpdateRequest"];
-            };
-        };
-        responses: {
-            /** @description Update */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": boolean;
-                };
-            };
-        };
-    };
-    LessonApiController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["LessonRequest"];
-            };
-        };
-        responses: {
-            /** @description Create */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["LessonResponse"];
-                };
-            };
-        };
-    };
-    PageApiController_deletePage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description uuid */
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Delete one page */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": boolean;
-                };
-            };
-        };
-    };
-    PageApiController_updatePage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PageUpdateRequest"];
-            };
-        };
-        responses: {
-            /** @description Update */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": boolean;
-                };
-            };
-        };
-    };
-    PageApiController_createPage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PageCreateRequest"];
-            };
-        };
-        responses: {
-            /** @description Create */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["PageResponse"];
-                };
-            };
-        };
-    };
-    SectionApiController_findAll: {
+    LessonCmsController_getSections: {
         parameters: {
             query?: never;
             header?: never;
@@ -616,7 +340,6 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Get all */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -627,75 +350,7 @@ export interface operations {
             };
         };
     };
-    SectionApiController_findOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Get one */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SectionResponse"];
-                };
-            };
-        };
-    };
-    SectionApiController_deleteOne: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Delete one */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": boolean;
-                };
-            };
-        };
-    };
-    SectionApiController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SectionUpdateRequest"];
-            };
-        };
-        responses: {
-            /** @description Update */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": boolean;
-                };
-            };
-        };
-    };
-    SectionApiController_create: {
+    LessonCmsController_createSection: {
         parameters: {
             query?: never;
             header?: never;
@@ -708,7 +363,27 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Create */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SectionResponse"];
+                };
+            };
+        };
+    };
+    LessonCmsController_getSection: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -719,7 +394,120 @@ export interface operations {
             };
         };
     };
-    UserApiController_signInWithFirebase: {
+    LessonCmsController_deleteSection: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": boolean;
+                };
+            };
+        };
+    };
+    LessonCmsController_updateSection: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SectionUpdateRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": boolean;
+                };
+            };
+        };
+    };
+    LessonCmsController_getLesson: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LessonResponse"];
+                };
+            };
+        };
+    };
+    LessonCmsController_deleteLesson: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": boolean;
+                };
+            };
+        };
+    };
+    LessonCmsController_updateLesson: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LessonUpdateRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": boolean;
+                };
+            };
+        };
+    };
+    LessonCmsController_createLesson: {
         parameters: {
             query?: never;
             header?: never;
@@ -728,17 +516,85 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["FirebaseAuthRequest"];
+                "application/json": components["schemas"]["LessonRequest"];
             };
         };
         responses: {
-            /** @description Sign in with Firebase token */
             201: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["AuthResponse"];
+                    "application/json": components["schemas"]["LessonResponse"];
+                };
+            };
+        };
+    };
+    LessonCmsController_createPage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PageCreateRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PageResponse"];
+                };
+            };
+        };
+    };
+    LessonCmsController_deletePage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": boolean;
+                };
+            };
+        };
+    };
+    LessonCmsController_updatePage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PageUpdateRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": boolean;
                 };
             };
         };
@@ -756,7 +612,27 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Sign in with email and password */
+            /** @description Returns access token in body, sets refresh token in httpOnly cookie */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WorkerAuthResponse"];
+                };
+            };
+        };
+    };
+    WorkerApiController_refresh: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Issues a new access token using the httpOnly refresh token cookie */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -780,7 +656,7 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Create a new worker */
+            /** @description Create a new worker (admin only) */
             201: {
                 headers: {
                     [name: string]: unknown;

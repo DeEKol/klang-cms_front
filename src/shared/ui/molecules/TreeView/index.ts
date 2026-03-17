@@ -1,1 +1,1 @@
-export { TreeView, type TTreeViewModel } from "./TreeView";
+export { TreeView, type TTreeViewModel, type TInnerModel } from "./TreeView";

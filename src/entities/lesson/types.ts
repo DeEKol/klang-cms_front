@@ -1,3 +1,3 @@
-import { type TGetLessonResponse } from "./api";
+import { type TLessonResponse } from "./api";
 
-export type TLesson = TGetLessonResponse;
+export type TLesson = TLessonResponse;

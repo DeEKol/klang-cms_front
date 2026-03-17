@@ -11,7 +11,7 @@
     "dev": "vite",
     "serve": "vite preview",
     "build": "vite build",
-    "generate:api": "openapi-typescript http://localhost:3000/api-json --output src/shared/api/typesApi.d.ts",
+    "generate:api": "openapi-typescript http://localhost:3000/api/cms-json --output src/shared/api/typesApi.d.ts",
     "plop": "plop",
     "create:slice": "plop slice"
   },

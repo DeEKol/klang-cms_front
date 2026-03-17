@@ -1,8 +1,16 @@
 import { paths, fetchData, fetchPostData, fetchPatchData } from "shared/api";
 import { trimPathParam } from "shared/lib/url";
 
-const baseEndpoint = "/cms/lessons/{id}";
-export type TLessonResponse =
+const findAllEndpoint = "/cms/sections";
+export type TSectionFindAllResponse =
+    paths[typeof findAllEndpoint]["get"]["responses"]["200"]["content"]["application/json"];
+type TCreateRequestBody =
+    paths[typeof findAllEndpoint]["post"]["requestBody"]["content"]["application/json"];
+type TCreateResponse =
+    paths[typeof findAllEndpoint]["post"]["responses"]["201"]["content"]["application/json"];
+
+const baseEndpoint = "/cms/sections/{id}";
+export type TSectionResponse =
     paths[typeof baseEndpoint]["get"]["responses"]["200"]["content"]["application/json"];
 type TFindOneRequestPath = paths[typeof baseEndpoint]["get"]["parameters"]["path"];
 type TUpdateRequestBody =
@@ -14,17 +22,12 @@ type TDeleteRequestPath = paths[typeof baseEndpoint]["delete"]["parameters"]["pa
 type TDeleteResponse =
     paths[typeof baseEndpoint]["delete"]["responses"]["200"]["content"]["application/json"];
 
-const createEndpoint = "/cms/lessons";
-type TCreateRequestBody =
-    paths[typeof createEndpoint]["post"]["requestBody"]["content"]["application/json"];
-type TCreateResponse =
-    paths[typeof createEndpoint]["post"]["responses"]["201"]["content"]["application/json"];
-
-export const lessonApi = {
-    getOne: async (path: TFindOneRequestPath): Promise<TLessonResponse> =>
+export const sectionApi = {
+    findAll: async (): Promise<TSectionFindAllResponse> => await fetchData(findAllEndpoint),
+    findOne: async (path: TFindOneRequestPath): Promise<TSectionResponse> =>
         await fetchData(`${trimPathParam(baseEndpoint, "{id}")}${path.id}`),
     create: async (body: TCreateRequestBody): Promise<TCreateResponse> =>
-        await fetchPostData(createEndpoint, body),
+        await fetchPostData(findAllEndpoint, body),
     update: async (path: TUpdateRequestPath, body: TUpdateRequestBody): Promise<TUpdateResponse> =>
         await fetchPatchData(`${trimPathParam(baseEndpoint, "{id}")}${path.id}`, body),
     delete: async (path: TDeleteRequestPath): Promise<TDeleteResponse> =>

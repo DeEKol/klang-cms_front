@@ -1,4 +1,4 @@
-export { lessonApi, type TGetLessonResponse, type TGetSectionAllResponse } from "./api";
+export { lessonApi, type TLessonResponse } from "./api";
 
 export {
     toPagesModel,

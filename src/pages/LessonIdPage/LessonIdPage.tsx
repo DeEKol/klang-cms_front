@@ -32,7 +32,7 @@ export function LessonIdPage() {
 
     // ? Requests
     async function fetchLesson(lessonId: string) {
-        return await lessonApi.getLesson({ id: lessonId });
+        return await lessonApi.getOne({ id: lessonId });
     }
 
     // ? Life Cycles

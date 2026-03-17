@@ -2,15 +2,14 @@
 import { useEffect, useState } from "react";
 // ? Layer Imports
 import { Layout } from "widgets/Layout";
-import { lessonApi } from "entities/lesson";
-import { TGetSectionAllResponse } from "entities/lesson";
+import { sectionApi, TSectionFindAllResponse } from "entities/section";
 import { Title } from "shared/ui/atoms/Title";
-import { TreeView, TTreeViewModel } from "shared/ui/molecules/TreeView";
+import { TreeView, TTreeViewModel, TInnerModel } from "shared/ui/molecules/TreeView";
 // ? Slice Imports
 import styles from "./LessonPage.module.css";
 
 // ? Types
-type TSectionAll = TGetSectionAllResponse;
+type TSectionAll = TSectionFindAllResponse;
 
 /*
  * Компонент, страница уроков
@@ -21,7 +20,7 @@ export function LessonPage() {
 
     // ? Requests
     async function fetchSections() {
-        return await lessonApi.getSectionAll();
+        return await sectionApi.findAll();
     }
 
     // ? Life Cycles
@@ -33,24 +32,18 @@ export function LessonPage() {
 
     // ? Utils
     function mapToTreeView(sectionAll: TSectionAll): TTreeViewModel {
-        return sectionAll.reduce((accSection, currSection) => {
-            return {
-                ...accSection,
-                [currSection.id]: {
-                    id: currSection.id,
-                    title: currSection.text,
-                    items: currSection.lessons.reduce((accLesson, currLesson) => {
-                        return {
-                            ...accLesson,
-                            [currLesson.id]: {
-                                id: currLesson.id,
-                                title: currLesson.text,
-                                linkTo: currLesson.id,
-                            },
-                        };
-                    }, {}),
-                },
-            };
+        return sectionAll.reduce((acc: TTreeViewModel, section: TSectionAll[number]) => {
+            const items = section.lessons.reduce(
+                (
+                    accL: Record<string, TInnerModel>,
+                    lesson: TSectionAll[number]["lessons"][number],
+                ) => ({
+                    ...accL,
+                    [lesson.id]: { id: lesson.id, title: lesson.text, linkTo: lesson.id },
+                }),
+                {},
+            );
+            return { ...acc, [section.id]: { id: section.id, title: section.text, items } };
         }, {});
     }
 

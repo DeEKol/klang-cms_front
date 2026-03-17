@@ -37,7 +37,7 @@ export function SignInPage() {
 
         try {
             const response = await workerApi.signIn({ email, password });
-            saveTokens(response.accessToken, response.refreshToken);
+            saveTokens(response.accessToken);
             navigate("/");
         } catch {
             setError("Неверный email или пароль");
