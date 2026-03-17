@@ -1,4 +1,4 @@
-import { getAccessToken } from "shared/lib/auth";
+import { getAccessToken, refreshAccessToken } from "shared/lib/auth";
 
 type THttpMethod = "GET" | "DELETE" | "POST" | "PUT" | "PATCH";
 
@@ -84,6 +84,19 @@ export async function fetchPatchData<T>(endpoint: string, body: object): Promise
 
 async function fetchWithError(url: string, options: RequestInit) {
     const response = await fetch(url, options);
+
+    if (response.status === 401) {
+        const refreshed = await refreshAccessToken();
+        if (refreshed) {
+            const retryOptions = { ...options, headers: buildHeaders() };
+            const retryResponse = await fetch(url, retryOptions);
+            if (!retryResponse.ok)
+                throw new Error(`Ошибка: ${retryResponse.status} ${retryResponse.statusText}`);
+            return retryResponse.json();
+        }
+        throw new Error("Unauthorized");
+    }
+
     if (!response.ok) throw new Error(`Ошибка: ${response.status} ${response.statusText}`);
     return await response.json();
 }

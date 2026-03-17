@@ -33,3 +33,20 @@ export function saveTokens(accessToken: string): void {
 export function clearTokens(): void {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
 }
+
+/*
+ * Обновляет access token через httpOnly refresh cookie.
+ * Возвращает true если успешно, false если refresh не удался.
+ */
+export async function refreshAccessToken(): Promise<boolean> {
+    try {
+        const url = import.meta.env.VITE_API_URL + "/cms/workers/auth/refresh";
+        const response = await fetch(url, { method: "POST", credentials: "include" });
+        if (!response.ok) return false;
+        const data = await response.json();
+        saveTokens(data.accessToken);
+        return true;
+    } catch {
+        return false;
+    }
+}
